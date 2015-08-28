@@ -166,7 +166,7 @@ if __name__ == "__main__":
     gameover = False
 
     food_x, food_y = food_pos(snake)
-    food = block(None, food_x, food_y, colour = (255,0,0))]
+    food = block(None, food_x, food_y, colour = (255,0,0))
             
     running = True
     while running:
