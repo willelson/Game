@@ -131,6 +131,7 @@ def food_pos(snake):
             break            
     return x, y
 
+
 def random_start(snake):
     """Return x, y coords & a direction for """
     size = 30
@@ -164,10 +165,11 @@ if __name__ == "__main__":
 
     counter = 0
     gameover = False
+    dead = False
 
     food_x, food_y = food_pos(snake)
-    food = block(None, food_x, food_y, colour = (255,0,0))]
-            
+    food = block(None, food_x, food_y, colour = (255,0,0))
+          
     running = True
     while running:
         clock.tick(30)
@@ -188,7 +190,7 @@ if __name__ == "__main__":
                     direction = "up"
                 elif event.key == pygame.K_ESCAPE and gameover == True:
                     running = False
-
+                
         if gameover == False:
             if snake.items[0].x == food.x and snake.items[0].y == food.y:
                 screen.fill(background_colour)
@@ -201,7 +203,7 @@ if __name__ == "__main__":
                 newBlock = block(snake.tail_dir, new_x, new_y)
                 snake.add(newBlock)
                                 
-                counter = 0
+                #counter = 0
                 snake.move(direction)
                 snake.draw()
 
@@ -216,11 +218,9 @@ if __name__ == "__main__":
             if snake.boundary() or snake.suicide():
                 for i in range(5):
                     snake.flash(0.25)
-                print snake.length
                 gameover = True
                   
             
-
         if gameover:
             over = menuFont.render("Game Over", 1, (0,0,0))
             scoreTxt = "You scored: " + str(snake.length)
@@ -228,13 +228,15 @@ if __name__ == "__main__":
             screen.blit(over, (200, 45))
             screen.blit(scr, (240, 90))
             pygame.display.flip()
-            time.sleep(2)
-            screen.fill(background_colour)
+            if dead == False:
+                time.sleep(2)
+                dead = True
+                screen.fill(background_colour)
 
-            esc = menuFont.render("Press escape to quit", 1, (0,0,0))
-            screen.blit(esc, (120, 220))
-            
-                     
+            esc = menuFont.render("Press esc to quit", 1, (0,0,0))
+            screen.blit(esc, (140, 220))
+
+                               
         pygame.display.flip()
         
     pygame.quit()
