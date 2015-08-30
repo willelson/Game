@@ -21,8 +21,6 @@ class block():
             self.y += self.size
         elif direction == "up":
             self.y -= self.size            
-        else:
-            pass
 
     def draw(self):
         """Method to draw the block"""
