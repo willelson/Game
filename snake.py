@@ -15,16 +15,12 @@ class block():
         """Method move the block in specified direction"""
         if direction == "right":
             self.x += self.size
-
         elif direction == "left":
             self.x -= self.size
-
         elif direction == "down":
             self.y += self.size
-
         elif direction == "up":
-            self.y -= self.size
-            
+            self.y -= self.size            
         else:
             pass
 
